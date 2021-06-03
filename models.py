@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from sqlalchemy import Column, String, Integer
 
-database_path = 'postgresql:///capstone'
+database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 

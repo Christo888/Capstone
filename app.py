@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify
 
 from flask_cors import CORS
 from auth import requires_auth, AuthError
@@ -21,10 +21,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def get_greeting():
-        excited = os.environ['EXCITED']
-        greeting = "Hello"
-        if excited == 'true': greeting = greeting + "!!!!!"
-        return greeting
+        return "Hello"
 
     @app.route('/coolkids')
     def be_cool():

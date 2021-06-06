@@ -34,7 +34,7 @@ class Actor(db.Model):
     age = Column(Integer, nullable=False)
     gender = Column(String(6), nullable=False)
 
-    movies = db.relationship("Movie", back_populates="actor")
+    movie = db.relationship("Movie", back_populates="actor")
 
     def __init__(self, name, age, gender):
         self.name = name

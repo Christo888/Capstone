@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 
 from flask_cors import CORS
 from auth import requires_auth, AuthError
-from models import setup_db, db_drop_and_create_all
+from models import setup_db, db_drop_and_create_all, Movie, Actor
 
 def create_app(test_config=None):
     # create and configure the app

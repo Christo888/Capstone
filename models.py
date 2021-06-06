@@ -34,7 +34,7 @@ class Actor(db.Model):
     age = Column(Integer, nullable=False)
     gender = Column(String(6), nullable=False)
 
-    movies = db.relationship('Movie', back_populates='actor')
+    movies = db.relationship("Movie", back_populates="actor")
 
     def __init__(self, name, age, gender):
         self.name = name
@@ -77,7 +77,7 @@ class Movie(db.Model):
     release_date = Column(Date)
 
     actor_id = Column(Integer, ForeignKey('Actor.id'))
-    actor = db.relationship('Actor', back_populates='movie')
+    actor = db.relationship("Actor", back_populates="movie")
 
     def __init__(self, title, release_date):
         self.title = title

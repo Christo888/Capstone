@@ -5,9 +5,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'nano-degree.eu.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'capstone'
+AUTH0_DOMAIN = auth0_config['AUTH0_DOMAIN']
+ALGORITHMS = auth0_config['ALGORITHMS']
+API_AUDIENCE = auth0_config['API_AUDIENCE']
 
 ## AuthError Exception
 '''

@@ -27,6 +27,9 @@ def create_app(test_config=None):
     """
     @app.route('/movies', methods=['GET'])
     def get_movies():
+        """
+        Get all movies endpoint
+        """
         movies = Movie.query.all()
         return jsonify({
             'success': True,
@@ -36,6 +39,9 @@ def create_app(test_config=None):
     @app.route('/movies/<movie_id>', methods=['GET'])
     @requires_auth('get:movies-detail')
     def get_movie_details(payload, movie_id):
+        """
+        Get specific movie details endpoint
+        """
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         if not movie:
             abort(404)
@@ -47,6 +53,9 @@ def create_app(test_config=None):
     @app.route('/movies', methods=['POST'])
     @requires_auth('post:movies')
     def add_movie(payload):
+        """
+        Create movie endpoint
+        """
         body = request.get_json()
 
         for field in ['title', 'release_date', 'actor_id']:
@@ -73,6 +82,9 @@ def create_app(test_config=None):
     @app.route('/movies/<movie_id>', methods=['PATCH'])
     @requires_auth('patch:movies')
     def patch_movie(payload, movie_id):
+        """
+        Update movie endpoint
+        """
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         # Throw an error if no movie is found
         if not movie:
@@ -105,6 +117,9 @@ def create_app(test_config=None):
     @app.route('/movies/<movie_id>', methods=['DELETE'])
     @requires_auth('delete:movies')
     def delete_movie(payload, movie_id):
+        """
+        Delete movie endpoint
+        """
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         if not movie:
             abort(404)
@@ -123,6 +138,9 @@ def create_app(test_config=None):
 
     @app.route('/actors', methods=['GET'])
     def get_actor():
+        """
+        Get all actors endpoint
+        """
         actors = Actor.query.all()
         return jsonify({
             'success': True,
@@ -132,6 +150,9 @@ def create_app(test_config=None):
     @app.route('/actors/<actor_id>', methods=['GET'])
     @requires_auth('get:actors-detail')
     def get_actor_details(payload, actor_id):
+        """
+        Get Actor details endpoint
+        """
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         if not actor:
             abort(404)
@@ -143,6 +164,9 @@ def create_app(test_config=None):
     @app.route('/actors', methods=['POST'])
     @requires_auth('post:actors')
     def add_actor(payload):
+        """
+        Create actor endpoint
+        """
         body = request.get_json()
 
         for field in ['name', 'gender', 'age']:
@@ -167,6 +191,9 @@ def create_app(test_config=None):
     @app.route('/actors/<actor_id>', methods=['PATCH'])
     @requires_auth('patch:actors')
     def patch_actor(payload, actor_id):
+        """
+        Update actor endpoint
+        """
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         # Throw an error if no actor is found
         if not actor:
@@ -199,6 +226,9 @@ def create_app(test_config=None):
     @app.route('/actors/<actor_id>', methods=['DELETE'])
     @requires_auth('delete:actors')
     def delete_actor(payload, actor_id):
+        """
+        Delete actor endpoint
+        """
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         if not actor:
             abort(404)

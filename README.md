@@ -31,7 +31,13 @@ This will install all of the required packages we selected within the `requireme
 
 ### Running the server
 
-Each time you open a new terminal session, run:
+To run the server run the following:
+
+```bash
+source env_bash.sh
+```
+
+Or each time you open a new terminal session, run:
 
 ```bash
 export FLASK_APP=app.py
@@ -79,3 +85,8 @@ https://capstone-hero.herokuapp.com/
 #### POST Actor : /actors
 #### PATCH Actor : /actors/<movie_id>
 #### DELETE Actor : /actors/<movie_id>
+
+## Running tests:
+```bash
+python test_app.py
+```

@@ -52,3 +52,23 @@ flask run --reload
 -Modify actors or movies  
 -Add or delete an actor from the database  
 -Add or delete a movie from the database  
+
+
+#### Site Base URL:
+https://capstone-hero.herokuapp.com/
+
+## Endpoints
+
+### Movie Endpoints
+#### GET Movies : /movies
+#### GET Movie detail : /movies/<movie_id>
+#### POST Movie : /movies
+#### PATCH Movie : /movies/<movie_id>
+#### DELETE Movie : /movies/<movie_id>
+
+### Actor Endpoints
+#### GET Actors : /actors
+#### GET Actor detail : /actors/<movie_id>
+#### POST Actor : /actors
+#### PATCH Actor : /actors/<movie_id>
+#### DELETE Actor : /actors/<movie_id>

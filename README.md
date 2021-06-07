@@ -74,18 +74,84 @@ https://capstone-hero.herokuapp.com/
 
 ### Movie Endpoints
 #### GET Movies : /movies
-#### GET Movie detail : /movies/<movie_id>
+```
+Request Data: None   
+Return Data: {  
+    'movies': [{'id': 8, 'release_date': 'Tue, 31 Dec 2019 22:00:00 GMT', 'title': 'Test Movie Create'},],
+    'success': True  
+} 
+``` 
 #### POST Movie : /movies
+```
+Request Data: {
+    'title': 'Test Movie Create', 
+    'release_date': '2020-01-01', 
+    'actor_id': '20'
+} 
+Return Data: {
+    'movie': {'id': 8, 'release_date': 'Tue, 31 Dec 2019 22:00:00 GMT', 'title': 'Test Movie Create'}, 
+    'success': True
+}
+```
 #### PATCH Movie : /movies/<movie_id>
+```
+Request Data: {
+    'title': 'Update Movie'
+} 
+Return Data: {
+    'movie': [{'id': 15, 'release_date': 'Sun, 06 Jun 2021 22:00:00 GMT', 'title': 'Update Movie'}], 
+    'success': True
+}
+```
 #### DELETE Movie : /movies/<movie_id>
-
+```
+Request Data: {'id': '20'} 
+Return Data: {
+    'delete': '20', 
+    'success': True
+}
+```
 ### Actor Endpoints
 #### GET Actors : /actors
-#### GET Actor detail : /actors/<movie_id>
+```
+Request Data: None
+Return Data: {
+    'actors': [{'age': 25, 'gender': 'Male', 'id': 27, 'name': 'Test Actor'},], 
+    'success': True
+}
+```
 #### POST Actor : /actors
+```
+Request Data: {
+'name': 'Test Actor',
+    'gender': 'Male',
+    'age': 25
+} 
+Return Data: {
+    'actor': {'age': 25, 'gender': 'Male', 'id': 27, 'name': 'Test Actor'},
+    'success': True
+}
+```
 #### PATCH Actor : /actors/<movie_id>
+```
+Request Data: {
+    'name': 'Update Actor'
+} 
+Return Data: {
+    'actor': {'age': 25, 'gender': 'male', 'id': 10, 'name': 'Update Actor'},
+    'success': True
+}
+```
 #### DELETE Actor : /actors/<movie_id>
-
+```
+Request Data: {
+    'id': '20'
+} 
+Return Data: {
+    'delete': '20', 
+    'success': True
+}
+```
 ## Running tests:
 ```bash
 python test_app.py

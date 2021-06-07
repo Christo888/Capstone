@@ -1,12 +1,14 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, jsonify, request, abort
-
 from flask_cors import CORS
+
 from auth import requires_auth, AuthError
 from models import setup_db, db_drop_and_create_all, Movie, Actor
 
 def create_app(test_config=None):
     # create and configure the app
+    load_dotenv()
     app = Flask(__name__)
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})

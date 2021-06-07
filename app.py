@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, abort
 
 from flask_cors import CORS
 from auth import requires_auth, AuthError
@@ -21,10 +21,6 @@ def create_app(test_config=None):
     @app.route('/')
     def get_greeting():
         return "Hello"
-
-    @app.route('/coolkids')
-    def be_cool():
-        return "Be cool, man, be coooool! You're almost a FSND grad!"
 
     """
     Movie endpoints
@@ -53,15 +49,18 @@ def create_app(test_config=None):
     def add_movie(payload):
         body = request.get_json()
 
-        for field in ['title', 'release_date']:
+        for field in ['title', 'release_date', 'actor_id']:
             if field not in body:
                 abort(400)
 
         title = body.get('title', None)
         release_date = body.get('release_date', None)
+        actor_id = body.get('actor_id', None)
 
         try:
             movie = Movie(title=title, release_date=release_date)
+            if actor_id:
+                movie.actor_id = actor_id
             movie.insert()
             return jsonify({
                 'success': True,
@@ -84,13 +83,16 @@ def create_app(test_config=None):
         if not body:
             abort(400)
 
-        title = body.get('title', drink.title)
-        release_date = body.get('release_date', drink.release_date)
+        title = body.get('title', movie.title)
+        release_date = body.get('release_date', movie.release_date)
+        actor_id = body.get('actor_id', movie.actor_id)
 
         try:
             # Update actor
             movie.title = title
             movie.release_date = release_date
+            movie.actor_id = actor_id
+            movie.update()
 
             # Return movie data
             return jsonify({
@@ -124,7 +126,7 @@ def create_app(test_config=None):
         actors = Actor.query.all()
         return jsonify({
             'success': True,
-            'actor': [actor.format() for actor in actors]
+            'actors': [actor.format() for actor in actors]
         })
 
     @app.route('/actors/<actor_id>', methods=['GET'])
@@ -152,7 +154,7 @@ def create_app(test_config=None):
         age = body.get('age', None)
 
         try:
-            actor = Drink(name=name, gender=gender, age=age)
+            actor = Actor(name=name, gender=gender, age=age)
             actor.insert()
             return jsonify({
                 'success': True,
@@ -175,9 +177,9 @@ def create_app(test_config=None):
         if not body:
             abort(400)
 
-        name = body.get('name', drink.name)
-        gender = body.get('gender', drink.gender)
-        age = body.get('age', drink.age)
+        name = body.get('name', actor.name)
+        gender = body.get('gender', actor.gender)
+        age = body.get('age', actor.age)
 
         try:
             # Update actor
@@ -186,10 +188,10 @@ def create_app(test_config=None):
             actor.age = age
             actor.update()
 
-            # Return drinks data
+            # Return actors data
             return jsonify({
                 'success': True,
-                'actor': [actor.format()],
+                'actor': actor.format(),
             })
         except Exception:
             abort(422)

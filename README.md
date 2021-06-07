@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 This will install all of the required packages we selected within the `requirements.txt` file.
 
-## Running the server
+### Running the server
 
 Each time you open a new terminal session, run:
 
@@ -35,3 +35,20 @@ To run the server, execute:
 ```bash
 flask run --reload
 ```
+
+### Auth0 roles
+
+#### Casting director:
+-Can view actors and movies  
+-Add or delete an actor from the database
+
+#### Casting assistant:
+-Can view actors and movies  
+-Add or delete an actor from the database  
+-Modify actors or movies
+
+#### Executive producer:
+-Can view actors and movies  
+-Modify actors or movies  
+-Add or delete an actor from the database  
+-Add or delete a movie from the database  

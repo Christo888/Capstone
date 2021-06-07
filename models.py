@@ -17,6 +17,7 @@ db = SQLAlchemy()
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.secret_key = 'super secret key'
     db.app = app
     db.init_app(app)
     db.create_all()
@@ -107,6 +108,5 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'actor_id': self.actor_id,
             'release_date': self.release_date
         }

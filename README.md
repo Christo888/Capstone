@@ -1,5 +1,12 @@
 # Capstone
 
+### Motivation
+Things I learned in this course:
+1) Creating flask apps
+2) Flask APIs
+3) Authentication with jwt and auth0
+4) Deployment with AWS/Heroku
+
 ## Getting Started
 
 ### Installing Dependencies
